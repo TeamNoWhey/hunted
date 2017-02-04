@@ -58,6 +58,7 @@ export default class Play extends window.Phaser.State {
     this.humanBladeSfx = null;
     this.soundTrack = null;
     this.sprintIcon = null;
+    this.pad1 = null;
   }
 
   // preload is a method used by Phaser states.
@@ -111,6 +112,10 @@ export default class Play extends window.Phaser.State {
     //  Stop the following keys from propagating up to the browser
     this.game.input.keyboard.addKeyCapture([ Phaser.Keyboard.LEFT, Phaser.Keyboard.RIGHT, Phaser.Keyboard.UP, Phaser.Keyboard.DOWN, Phaser.Keyboard.SPACEBAR ]);
 
+    // To listen to buttons from a specific pad listen directly on that pad game.input.gamepad.padX, where X = pad 1-4
+    this.game.input.gamepad.start();
+    this.pad1 = this.game.input.gamepad.pad1;
+
     // initiate socket connection
     this.socket = io.connect();
 
@@ -126,12 +131,14 @@ export default class Play extends window.Phaser.State {
       align: 'center'
     };
 
+
     //Audio Files
     this.humanAnvilSfx = this.game.add.audio('humanAnvil');
     this.wolfChompSfx = this.game.add.audio('wolfChomp');
     this.wolfHowlSfx = this.game.add.audio('wolfHowl');
     this.humanBladeSfx = this.game.add.audio('humanBlade');
     this.soundTrack = this.game.add.audio('soundTrack')
+    this.game.sound.stopAll();
     this.soundTrack.play();
 
 
@@ -265,6 +272,37 @@ export default class Play extends window.Phaser.State {
         this.newDirection = 'down';
       }
 
+      // set speed if one of the xbox gamepad dpad/sticks are pressed
+      if(this.pad1.connected){
+
+        if (
+          this.pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) < -0.1 || this.pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) > 0.1 ||
+          this.pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_Y) > 0.1 || this.pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_Y) < -0.1
+        ) {
+          this.speed = 2;
+        } else {
+          this.speed = 0;
+        }
+
+        // // set direction based on what dpad/keys are down
+        if (this.pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) < -0.1 && this.pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_Y) > 0.1) {
+          this.newDirection = 'down-left';
+        } else if (this.pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) < -0.1 && this.pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_Y) < -0.1) {
+          this.newDirection = 'up-left';
+        } else if (this.pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) > 0.1 && this.pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_Y) > 0.1) {
+          this.newDirection = 'down-right';
+        } else if (this.pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) > 0.1 && this.pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_Y) < -0.1) {
+          this.newDirection = 'up-right';
+        } else if (this.pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) < -0.1) {
+          this.newDirection = 'left';
+        } else if (this.pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) > 0.1) {
+          this.newDirection = 'right';
+        } else if (this.pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_Y) > 0.1) {
+          this.newDirection = 'down';
+        } else if (this.pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_Y) < -0.1) {
+          this.newDirection = 'up';
+        }
+      };
       // With this.updateDelay incrementing every time
       // update is called, the if statement below is only
       // true once every ten times. It is on these times
