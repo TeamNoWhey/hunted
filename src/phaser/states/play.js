@@ -77,7 +77,7 @@ export default class Play extends window.Phaser.State {
     this.game.load.spritesheet('meat', meat, 16, 17); // load meat sprite
     this.game.load.spritesheet('silver', silver, 37, 35); // load silver sprite
     this.game.load.spritesheet('human', human, 29, 31);
-    
+
     this.game.load.audio('humanAnvil', humanAnvil);
     this.game.load.audio('wolfChomp', wolfChomp);
     this.game.load.audio('wolfHowl', wolfHowl);
@@ -166,12 +166,12 @@ export default class Play extends window.Phaser.State {
     // set the socket event handlers
     this.setEventHandlers();
 
-    // create the walls 
+    // create the walls
     this.generateWall();
 
     // send the socket event 'disconnect' on reload
     window.addEventListener("beforeunload", () => {
-      this.socket.emit('disconnect');  
+      this.socket.emit('disconnect');
     });
 
   }
@@ -181,7 +181,7 @@ export default class Play extends window.Phaser.State {
   update() {
     // this.game.physics.arcade.collide(this.silver, this.wall);
     // this.game.physics.arcade.collide(this.me.player, this.wall);
-    
+
     if (this.me) {
 
       // set speed if one of the xbox gamepad dpad/sticks are pressed
@@ -294,8 +294,8 @@ export default class Play extends window.Phaser.State {
           context.game.add.tween(context.sprintIcon).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true);
           context.game.time.events.add(Phaser.Timer.SECOND * 2, function() {
             context.sprintCooldown = false;
-            this.powerUpSfx.play();
-            
+            context.powerUpSfx.play();
+
           });
         });
       }
@@ -305,7 +305,7 @@ export default class Play extends window.Phaser.State {
       this.speed *= 3;
       // console.log('speed with sprint on is:', this.speed);
     }
-  } 
+  }
       // With this.updateDelay incrementing every time
       // update is called, the if statement below is only
       // true once every ten times. It is on these times
@@ -427,7 +427,7 @@ export default class Play extends window.Phaser.State {
     }
   }
 
-  
+
   // If meat collision happens remove meat and increase score
   // If score is divisible by 10, then the last piece was just
   // picked up. Call switch roles method in this case.
@@ -481,7 +481,7 @@ export default class Play extends window.Phaser.State {
         this.switchRoles();
       } else if (this.score % 10 >= 1 || this.score !== 0) {
         this.humanAnvilSfx.play();
-      } 
+      }
       this.socket.emit('forge', { id: this.me.id, score: this.score });
     }
   }
@@ -499,7 +499,7 @@ export default class Play extends window.Phaser.State {
         // of overlapping variables
         // this.score++;
         // this.scoreTextValue.text = this.score.toString();
-      }  
+      }
        this.socket.emit('bounce');
       }
 
