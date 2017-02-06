@@ -402,11 +402,17 @@ export default class Play extends window.Phaser.State {
 
 
   generateWall() {
-    for(let i = 0; i < 9; i++){
-      const wall = this.game.add.sprite(this.getRandomTreeX(), this.getRandomTreeY(), 'walls');
+    // for(let i = 0; i < 9; i++){
+    //   const wall = this.game.add.sprite(this.getRandomTreeX(), this.getRandomTreeY(), 'walls');
 
-      this.wallObj[i] = wall;
-    }
+    //   this.wallObj[i] = wall;
+    // }
+    this.wallObj.one = this.game.add.sprite(150, 100, 'walls');
+    this.wallObj.two = this.game.add.sprite(600, 250, 'walls');
+    this.wallObj.three = this.game.add.sprite(1000, 400, 'walls');
+    this.wallObj.four = this.game.add.sprite(1100, 300, 'walls');
+    this.wallObj.five = this.game.add.sprite(400, 50, 'walls');
+    this.wallObj.six = this.game.add.sprite(50, 200, 'walls');
   }
 
   generateSilver() {
