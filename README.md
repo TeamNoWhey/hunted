@@ -1,4 +1,4 @@
-# HUNTED
+ HUNTED
 
 In this 2D multiplayer game, one player (the werewolf) pursues the other player (the human) and attempts to win the game by catching them. However, the tables can quickly turn on the werewolf. The human simply has to survive long enough to acquire 10 pieces of silver in order to build a weapon. Once they have a weapon, the hunter has now become the hunted. The werewolf must eat enough pieces of meat to be able to overpower the human, thus reversing their roles again. This continues until one player is eliminated.
 
@@ -69,10 +69,17 @@ $ ./startprod.sh
 * **Tai Hovanky** [tai.hovanky@gmail.com](tai.hovanky@gmail.com)
 * **Greg Bacus** [gbacus28@gmail.com](gbacus28@gmail.com)
 
+* **Nicholas Barnett** [barnettn26@gmail.com](barnettn26@gmail.com)
+* **Rachel DePriest** [racheldepriest1@gmail.com](racheldepriest1@gmail.com)
+* **Forrest Miller** [forrest.heath.miller@gmail.com](forrest.heath.miller@gmail.com)
+* **Tin Nguyen** [gbacus28@gmail.com](tinytheyfon8@gmail.com)
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used
+* Thank you to the first group of Authors, which laid the foundation for us to continue on.
+
+* Thank you to Youtuber [https://www.youtube.com/channel/UCRpV6MFrOgw1YM9vzbsBPDw](RBG Music) for allowing us to use the following tracks. A New Beginning, Haunted House, and GameOver
