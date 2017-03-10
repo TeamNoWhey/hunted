@@ -82,4 +82,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 * Thank you to the first group of Authors, which laid the foundation for us to continue on.
 
-* Thank you to Youtuber [https://www.youtube.com/channel/UCRpV6MFrOgw1YM9vzbsBPDw](RBG Music) for allowing us to use the following tracks. A New Beginning, Haunted House, and GameOver
+* Thank you to Youtuber [RBG Music](https://www.youtube.com/channel/UCRpV6MFrOgw1YM9vzbsBPDw) for allowing us to use the following tracks. A New Beginning, Haunted House, and GameOver
